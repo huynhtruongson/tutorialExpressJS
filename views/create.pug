@@ -1,0 +1,17 @@
+extends ./common
+block content
+    if errs
+        each err in errs
+            div(class="alert alert-danger",style = "width : 500px")= err
+    form(action="/user/create",method="POST",enctype="multipart/form-data",style="width : 500px")
+        div(class="form-row d-flex")
+            input#userId(type="hidden",name="userId",value= userId ? userId : "" )
+            div(class="col" value)
+                label(for="name") Name
+                input#name(type="text",name="name",class="form-control",required,value= values ? values.name:'')
+            div(class="col")
+                label(for="age") Age
+                input#age(type="text",name="age",class="form-control",required,value= values ? values.age : '')
+        label(for="avatar") Avatar 
+        input#avatar(type="file",class="form-control-file",name="avatar",required)
+        button(class="btn btn-primary ml-2",style="margin-top : 15px")= userId ? "Update" : "Create"

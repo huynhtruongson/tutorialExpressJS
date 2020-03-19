@@ -1,0 +1,28 @@
+extends ./common
+block link
+    link(rel="stylesheet",type="text/css",href="/css/products.css")
+block content
+    .row
+        if(products)
+            each product in products
+                div(class="card",style="width : 17rem")
+                    img(class="card-img-top",src=product.image)
+                    .card-body
+                        h5.card-title= product.name
+                        p.card-text= product.description
+                        a(class="btn btn-primary",href="/cart/add/"+product.id) Add to card
+    nav(aria-label='Page navigation example')
+        ul.pagination.justify-content-end
+            if(page-1 > 0)
+                li.page-item
+                    a.page-link(href="/products?page="+(page-1)) Previous
+                li.page-item
+                    a.page-link(href="/products?page="+(page-1))= page-1
+            li.page-item.active
+                span.page-link= page
+            li.page-item
+            if(page < totalpage)
+                li.page-item
+                    a.page-link(href="/products?page="+(page+1))= page+1
+                li.page-item
+                    a.page-link(href="/products?page="+(page+1))  Next
