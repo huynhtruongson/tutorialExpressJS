@@ -1,6 +1,14 @@
 const express = require('express')
 const multer  = require('multer')
-const upload = multer({ dest: './public/uploads/' })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({ storage : storage })
 const controller = require('../controllers/user.controller')
 const validate = require('../validation/validate.createUser')
 const router = express.Router()

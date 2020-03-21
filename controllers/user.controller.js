@@ -1,5 +1,4 @@
-// const db = require("../db")
-// const shortid = require('shortid')
+
 const User = require('../models/user.model')
 module.exports.index = function(req,res) {
     User.find().then(function(users) {
@@ -40,7 +39,6 @@ module.exports.deleteUser = function(req,res) {
 module.exports.PostcreateUser = function(req,res) {
     req.body.avatar ="/" + req.file.path.split('\\').slice(1).join('/')
     if(!req.body.userId) {
-        // req.body.avatar ="/" + req.file.path.split('\\').slice(1).join('/')
         if(req.body.name !=="" && req.body.age !== "") {
             let user = new User()
             user.name = req.body.name
